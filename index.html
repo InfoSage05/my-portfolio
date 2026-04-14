@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Ayushman Paul — AI/ML Engineer at IIT Kharagpur. Portfolio showcasing projects in GenAI, RAG, Multi-Agent Systems, and competitive ML." />
+  <meta name="keywords"
+    content="Ayushman Paul, AI Engineer, ML Engineer, IIT Kharagpur, GenAI, LangChain, PyTorch, Portfolio" />
+  <meta name="author" content="Ayushman Paul" />
+  <title>Ayushman Paul — AI/ML Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#4f6ef7',
+              light: '#7b93ff',
+              dark: '#3451d1',
+              muted: '#eef0fe',
+            },
+            charcoal: {
+              DEFAULT: '#1a1a2e',
+              light: '#2d2d44',
+            },
+            ink: '#22223b',
+            mist: '#f4f4f8',
+            border: '#e2e2ec',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out',
+            'slide-up': 'slideUp 0.5s ease-out',
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+            slideUp: { '0%': { opacity: 0, transform: 'translateY(16px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #22223b;
+      background: #ffffff;
+    }
+
+    /* Nav */
+    #navbar {
+      transition: box-shadow 0.3s;
+    }
+
+    #navbar.scrolled {
+      box-shadow: 0 1px 0 #e2e2ec;
+    }
+
+    /* Active nav link */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4f6ef7;
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Section fade on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Project cards */
+    .project-card {
+      border: 1px solid #e2e2ec;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: #4f6ef7;
+      box-shadow: 0 4px 24px rgba(79, 110, 247, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Tag pill */
+    .tag {
+      display: inline-block;
+      background: #eef0fe;
+      color: #3451d1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* Achievement row */
+    .achievement-row {
+      border-left: 2px solid #e2e2ec;
+      transition: border-color 0.2s;
+    }
+
+    .achievement-row:hover {
+      border-left-color: #4f6ef7;
+    }
+
+    /* Skill badge */
+    .skill-badge {
+      border: 1px solid #e2e2ec;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .skill-badge:hover {
+      border-color: #4f6ef7;
+      background: #eef0fe;
+    }
+
+    /* GitHub card */
+    .repo-card {
+      border: 1px solid #e2e2ec;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .repo-card:hover {
+      border-color: #4f6ef7;
+      box-shadow: 0 2px 12px rgba(79, 110, 247, 0.07);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22223b;
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .tooltip-wrap:hover .tooltip {
+      opacity: 1;
+    }
+
+
+
+    /* Section divider */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #e2e2ec;
+      margin: 0;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f4f4f8;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c4c4d4;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ─── NAVIGATION ─────────────────────────────────────────── -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="font-mono text-sm font-medium text-accent tracking-tight">AP<span
+          class="text-ink">.</span></a>
+      <ul class="hidden md:flex gap-7 text-sm font-medium text-gray-500">
+        <li><a href="#github" class="nav-link hover:text-ink transition-colors">GitHub</a></li>
+        <li><a href="#projects" class="nav-link hover:text-ink transition-colors">Projects</a></li>
+        <li><a href="#achievements" class="nav-link hover:text-ink transition-colors">Achievements</a></li>
+        <li><a href="#skills" class="nav-link hover:text-ink transition-colors">Skills</a></li>
+        <li><a href="#contact" class="nav-link hover:text-ink transition-colors">Contact</a></li>
+      </ul>
+      <a href="Resume_Zenith.pdf" target="_blank"
+        class="hidden md:inline-flex items-center gap-2 text-xs font-semibold text-accent border border-accent/30 px-3 py-1.5 rounded hover:bg-accent hover:text-white transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Résumé
+      </a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-6 pt-28">
+
+    <!-- ─── HERO ───────────────────────────────────────────────── -->
+    <section id="hero" class="py-20 animate-slide-up">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div>
+          <p class="font-mono text-xs text-accent tracking-widest uppercase mb-3">AI / ML Engineer</p>
+          <h1 class="text-4xl md:text-5xl font-bold text-charcoal leading-tight tracking-tight">
+            Ayushman Paul
+          </h1>
+          <p class="mt-4 text-base md:text-lg text-gray-600 max-w-xl leading-relaxed">
+            Dual Degree student at <span class="font-medium text-ink">IIT Kharagpur</span> (CGPA 9.2).
+            Building production-grade GenAI systems, multi-agent architectures, and competitive ML pipelines
+            that solve real-world problems.
+          </p>
+          <!-- Social row -->
+          <div class="mt-6 flex items-center gap-5">
+            <!-- GitHub -->
+            <a href="https://github.com/InfoSage05" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 text-sm text-gray-600 hover:text-accent transition-colors group"
+              aria-label="GitHub">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.87 10.95.58.1.79-.25.79-.56 0-.28-.01-1.02-.01-2C6 21.03 5.25 18.8 5.25 18.8c-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.07 11.07 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.69.41.35.78 1.05.78 2.12 0 1.54-.01 2.78-.01 3.15 0 .31.2.67.79.56A11.51 11.51 0 0023.5 12C23.5 5.65 18.35.5 12 .5z" />
+              </svg>
+              <span class="font-medium">InfoSage05</span>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/ayushman-paul" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 text-sm text-gray-600 hover:text-accent transition-colors group"
+              aria-label="LinkedIn">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+              </svg>
+              <span class="font-medium">ayushman-paul</span>
+            </a>
+            <!-- Email -->
+            <button id="email-btn" onclick="copyEmail()"
+              class="tooltip-wrap relative flex items-center gap-2 text-sm text-gray-600 hover:text-accent transition-colors group cursor-pointer"
+              aria-label="Copy email">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span id="email-label" class="font-medium">mr.infosagepoint2020@gmail.com</span>
+              <span class="tooltip" id="email-tooltip">Click to copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Status badge -->
+        <div class="flex-shrink-0 bg-mist border border-border rounded-xl p-5 text-sm space-y-2 min-w-[200px]">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span class="font-medium text-ink text-xs">Open to Opportunities</span>
+          </div>
+          <hr class="section-divider" />
+          <div class="font-mono text-xs text-gray-500 space-y-1">
+            <div>📍 Kharagpur, India</div>
+            <div>🎓 IIT Kharagpur</div>
+            <div>📱 +91-8984694275</div>
+            <div>⏱ Apr 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ─── GITHUB SECTION ─────────────────────────────────────── -->
+    <section id="github" class="py-16 reveal">
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-charcoal">GitHub</h2>
+        <a href="https://github.com/InfoSage05" target="_blank"
+          class="text-xs font-medium text-accent hover:underline font-mono">@InfoSage05 →</a>
+      </div>
+      <p class="text-sm text-gray-500 mb-8">Pinned repositories &amp; open-source contributions</p>
+
+      <!-- Profile stats strip -->
+      <div class="flex flex-wrap gap-6 mb-8 text-xs font-mono text-gray-500">
+        <span><span class="font-semibold text-charcoal">IIT Kharagpur</span> · India</span>
+        <span>📦 Repositories · <a href="https://github.com/InfoSage05?tab=repositories" target="_blank"
+            class="text-accent hover:underline">github.com/InfoSage05</a></span>
+        <span>🌐 Open Source Contributor</span>
+      </div>
+
+      <!-- Pinned Repos -->
+      <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Pinned Repositories</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+
+        <a href="https://github.com/InfoSage05" target="_blank" class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">NyayaAI</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">Multi-Agent legal assistance platform · Pan IIT Hackathon
+            (Convolve 4.0)</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">FastAPI</span><span class="tag">LangGraph</span><span class="tag">Qdrant</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/InfoSage05" target="_blank" class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">Project Kisan</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">Multi-agent crop disease diagnosis &amp; advisory · Google
+            Cloud Hackathon</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">LangGraph</span><span class="tag">Gemini</span><span class="tag">RAG</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/InfoSage05/frammer_agent" target="_blank"
+          class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">Frammer AI</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">TypeScript / Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">Operations Intelligence Dashboard & Agent workflow</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">Next.js</span><span class="tag">Agentic AI</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/InfoSage05" target="_blank" class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">Multimodal Pricing Engine</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">Text + image fusion for product price prediction · Amazon ML
+            Challenge 2025</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">PyTorch</span><span class="tag">HuggingFace</span><span class="tag">Multimodal</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/InfoSage05" target="_blank" class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">Marketing Budget Opt.</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">Constrained ROI optimization · 🥇 Gold Medal, GenChamp
+            Technology 2025</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">SciPy</span><span class="tag">Pandas</span><span class="tag">Optimization</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/InfoSage05" target="_blank" class="repo-card rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4" />
+              </svg>
+              <p class="font-mono text-sm font-semibold text-charcoal">Research Paper Evaluator</p>
+            </div>
+            <span class="text-xs text-gray-400 bg-mist px-1.5 py-0.5 rounded font-mono">Python</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">ML framework for paper quality analysis &amp; conference
+            matching · Kharagpur Data Science Hackathon 2025</p>
+          <div class="flex gap-1.5 flex-wrap mt-auto">
+            <span class="tag">Scikit-learn</span><span class="tag">NLP</span><span class="tag">Classification</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Open Source Contributions -->
+      <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Open Source Contributions</h3>
+      <div class="space-y-0 divide-y divide-border border border-border rounded-xl overflow-hidden">
+
+        <div class="flex items-start gap-4 p-4 hover:bg-mist transition-colors">
+          <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#eef0fe] flex items-center justify-center mt-0.5">
+            <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <a href="https://github.com/openvinotoolkit/openvino" target="_blank"
+                class="font-mono text-sm font-semibold text-charcoal hover:text-accent transition-colors">openvinotoolkit
+                / openvino</a>
+              <span class="text-xs text-gray-400 bg-mist border border-border px-1.5 py-0.5 rounded font-mono">Fork +
+                GSoC Proposal</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+              Forked and studied the OpenVINO runtime for my Google Summer of Code proposal on
+              <em>AI PC Inference Optimization</em> — seamless runtime switching between CPU, GPU, and NPU
+              using the AUTO plugin and async inference pipeline.
+            </p>
+            <div class="mt-2 flex gap-1.5 flex-wrap">
+              <span class="tag">OpenVINO</span><span class="tag">C++</span><span class="tag">Python</span><span
+                class="tag">NPU</span><span class="tag">GSoC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 hover:bg-mist transition-colors">
+          <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#eef0fe] flex items-center justify-center mt-0.5">
+            <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <a href="https://github.com/openvinotoolkit/openvino_notebooks" target="_blank"
+                class="font-mono text-sm font-semibold text-charcoal hover:text-accent transition-colors">openvinotoolkit
+                / openvino_notebooks</a>
+              <span class="text-xs text-gray-400 bg-mist border border-border px-1.5 py-0.5 rounded font-mono">Fork +
+                Study</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+              Referenced and adapted Jupyter notebooks for face detection and model optimization experiments
+              targeting AI PC workloads (iGPU / NPU pipelines).
+            </p>
+            <div class="mt-2 flex gap-1.5 flex-wrap">
+              <span class="tag">OpenVINO</span><span class="tag">Jupyter</span><span class="tag">Python</span><span
+                class="tag">Computer Vision</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 hover:bg-mist transition-colors">
+          <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#eef0fe] flex items-center justify-center mt-0.5">
+            <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-mono text-sm font-semibold text-charcoal">LangChain / LangGraph ecosystem</span>
+              <span class="text-xs text-gray-400 bg-mist border border-border px-1.5 py-0.5 rounded font-mono">Active
+                Usage + Extensions</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+              Extended LangGraph state machines for multi-agent orchestration across NyayaAI, Project Kisan,
+              and Frammer AI. Built custom nodes, tool-calling chains, and memory modules
+              on top of the upstream framework.
+            </p>
+            <div class="mt-2 flex gap-1.5 flex-wrap">
+              <span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Python</span><span
+                class="tag">Agents</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ─── PROJECTS ───────────────────────────────────────────── -->
+    <section id="projects" class="py-16 reveal">
+      <h2 class="text-xl font-bold text-charcoal mb-1">Projects</h2>
+      <p class="text-sm text-gray-500 mb-8">End-to-end systems with measurable outcomes</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <!-- Card 1 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">Convolve Hackathon · Pan IIT</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">NyayaAI</h3>
+            </div>
+            <a href="https://github.com/InfoSage05" target="_blank"
+              class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Built a Multi-Agent legal assistance system orchestrating specialist
+            agents (document retrieval, statute lookup, case analysis) via LangGraph. Used Qdrant as a vector store for
+            semantic search over Indian legal case law, and Groq for low-latency inference.<br />
+            <strong class="text-ink">Result:</strong> Delivered a working courtroom assistant at Convolve 4.0 (Pan IIT
+            Hackathon) capable of answering complex legal queries with cited sources.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">FastAPI</span><span class="tag">LangGraph</span><span class="tag">Qdrant</span><span
+              class="tag">Groq</span><span class="tag">RAG</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">Amazon ML Challenge 2025</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">Multimodal Product Pricing Engine</h3>
+            </div>
+            <a href="https://github.com/InfoSage05" target="_blank"
+              class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Fused catalog text embeddings (transformer-based) with product image
+            embeddings in a late-fusion architecture to predict price ranges. Applied feature engineering on structured
+            catalog metadata alongside vision features.<br />
+            <strong class="text-ink">Result:</strong> Competitive ranking on the Amazon ML Challenge 2025 leaderboard
+            with measurably higher accuracy than text-only baseline.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">PyTorch</span><span class="tag">HuggingFace</span><span class="tag">Vision
+              Transformers</span><span class="tag">Multimodal</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">Google Cloud Hackathon</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">Project Kisan</h3>
+            </div>
+            <a href="https://github.com/InfoSage05" target="_blank"
+              class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Designed a multi-agent platform for crop disease diagnosis and
+            treatment recommendation. Agents specialized in image analysis (Gemini Vision), RAG-based agronomic
+            knowledge retrieval, and market price lookups communicate via LangGraph state machine.<br />
+            <strong class="text-ink">Result:</strong> End-to-end agentic pipeline for Indian farmers, showcased at
+            Google Cloud Agentic AI Hackathon.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">LangGraph</span><span class="tag">LangChain</span><span class="tag">Gemini</span><span
+              class="tag">Google Cloud</span><span class="tag">RAG</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">Dashboard · Agentic AI</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">Frammer AI — Ops Intelligence v19</h3>
+            </div>
+            <div class="flex gap-2">
+              <a href="https://gcdata26.onrender.com/" target="_blank"
+                class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="Live Demo">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+              </a>
+              <a href="https://github.com/InfoSage05/frammer_agent" target="_blank"
+                class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Built an Operations Intelligence Dashboard integrating an underlying
+            AI agent ("frammer_agent") to process, analyze, and visualize operations data. Developed a modern,
+            interactive full-stack frontend using Next.js and React.<br />
+            <strong class="text-ink">Result:</strong> Successfully deployed the production-ready dashboard on Render
+            with real-time agentic backend integration and responsive UI workflows.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">LangChain</span><span
+              class="tag">Agentic AI</span>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">Marketing Analytics</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">Marketing Budget Optimization</h3>
+            </div>
+            <a href="https://github.com/InfoSage05" target="_blank"
+              class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Designed an algorithmic framework using marketing mix modeling and
+            constrained optimization (SciPy) to allocate budgets across channels for maximum ROI. Validated with
+            synthetic and real anonymized data.<br />
+            <strong class="text-ink">Result:</strong> <span class="font-semibold text-charcoal">🥇 Gold Medal</span> at
+            General Championship Technology 2025 (IIT Kharagpur intra-institute technical championship).
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">Python</span><span class="tag">SciPy</span><span class="tag">Pandas</span><span
+              class="tag">Optimization</span>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="project-card rounded-xl p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <span class="text-xs font-mono text-accent uppercase tracking-wider">KDS Hackathon 2025</span>
+              <h3 class="text-base font-semibold text-charcoal mt-0.5">Research Paper Evaluation Framework</h3>
+            </div>
+            <a href="https://github.com/InfoSage05" target="_blank"
+              class="flex-shrink-0 text-gray-400 hover:text-accent transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed flex-1">
+            <strong class="text-ink">How:</strong> Built an ML framework that parses research papers (PDF/XML), extracts
+            features (methodology novelty, citation density, reproducibility signals), and recommends suitable
+            conferences using a classification pipeline.<br />
+            <strong class="text-ink">Result:</strong> Delivered at Kharagpur Data Science Hackathon 2025; framework
+            achieves high accuracy on conference matching task.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="tag">Scikit-learn</span><span class="tag">NLP</span><span class="tag">PDF Parsing</span><span
+              class="tag">Classification</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ─── ACHIEVEMENTS ───────────────────────────────────────── -->
+    <section id="achievements" class="py-16 reveal">
+      <h2 class="text-xl font-bold text-charcoal mb-1">Competitions & Achievements</h2>
+      <p class="text-sm text-gray-500 mb-8">Competitive track record across hackathons and open-source</p>
+
+      <div class="space-y-0 divide-y divide-border">
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">🥇 Gold Medal — Marketing Budget Optimization</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">General Championship Technology 2025 · IIT Kharagpur</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">2025</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">🏆 Convolve 4.0 — NyayaAI (Pan IIT Hackathon)</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">Pan IIT Inter-University Hackathon · Multi-Agent Legal
+                AI</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">2026</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">Amazon ML Challenge 2025</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">Multimodal Product Pricing · Competitive Leaderboard
+                Ranking</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">2025</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">Google Cloud Agentic AI Hackathon</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">Project Kisan — Multi-Agent Crop Diagnosis Platform</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">2025</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">Kharagpur Data Science Hackathon 2025</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">Research Paper Evaluation Framework · NLP +
+                Classification</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">2025</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">AI/ML Intern — Nirveon X</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">GenAI Mental Health Assistant · RAG Pipelines (HyDE,
+                GRAG, LCM+RAG)</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">Feb – Jun 2025</span>
+          </div>
+        </div>
+
+        <div class="achievement-row pl-5 py-4">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-sm text-charcoal">CGPA 8.17 / 10 — IIT Kharagpur</span>
+              <p class="text-xs text-gray-500 mt-0.5 font-mono">Dual Degree in Manufacturing Science and Engineering ·
+                Sep 2023–Present</p>
+            </div>
+            <span class="text-xs text-accent font-mono flex-shrink-0">Ongoing</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ─── SKILLS MATRIX ──────────────────────────────────────── -->
+    <section id="skills" class="py-16 reveal">
+      <h2 class="text-xl font-bold text-charcoal mb-1">Skills Matrix</h2>
+      <p class="text-sm text-gray-500 mb-8">Tools and technologies I work with regularly</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">AI / ML Frameworks</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge px-3 py-1.5 rounded-lg">PyTorch</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">TensorFlow</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Scikit-learn</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">HuggingFace</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">LangChain</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">LangGraph</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">MCP</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Python</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">C / C++</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">SQL</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">JavaScript</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">HTML / CSS</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Infrastructure & Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge px-3 py-1.5 rounded-lg">FastAPI</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Django</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Docker</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Git / GitHub</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Google Cloud</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Qdrant</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Data & Optimization</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Pandas</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">NumPy</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Matplotlib</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">SciPy</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">RAG Pipelines</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Vector DBs</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-2">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Coursework</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Machine Learning</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Deep Learning</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Data Structures & Algorithms</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Linear Algebra</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Probability & Statistics</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Transform Calculus</span>
+            <span class="skill-badge px-3 py-1.5 rounded-lg">Algorithms I</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ─── CONTACT ────────────────────────────────────────────── -->
+    <section id="contact" class="py-16 reveal">
+      <div class="max-w-2xl">
+        <h2 class="text-xl font-bold text-charcoal mb-1">Get in Touch</h2>
+        <p class="text-sm text-gray-500 mb-8">Open to internships, research collaborations, and interesting problems.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Left: Contact Details -->
+          <div class="flex flex-col gap-6">
+            <div class="bg-mist border border-border rounded-xl p-6 flex flex-col items-start gap-4">
+              <div>
+                <p class="text-xs font-mono text-gray-400 uppercase tracking-wider mb-1">Primary Email</p>
+                <p class="font-mono text-sm font-medium text-charcoal" id="contact-email">mr.infosagepoint2020@gmail.com
+                </p>
+              </div>
+              <button onclick="copyEmail()" id="copy-btn"
+                class="flex items-center justify-center gap-2 text-sm font-semibold text-accent border border-accent/30 px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all w-full sm:w-auto">
+                <svg class="w-4 h-4" id="copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span id="copy-text">Copy Email</span>
+              </button>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <a href="https://github.com/InfoSage05" target="_blank"
+                class="flex items-center gap-3 text-sm text-gray-600 hover:text-accent transition-colors font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.87 10.95.58.1.79-.25.79-.56 0-.28-.01-1.02-.01-2C6 21.03 5.25 18.8 5.25 18.8c-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.07 11.07 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.69.41.35.78 1.05.78 2.12 0 1.54-.01 2.78-.01 3.15 0 .31.2.67.79.56A11.51 11.51 0 0023.5 12C23.5 5.65 18.35.5 12 .5z" />
+                </svg>
+                GitHub Profile
+              </a>
+              <a href="https://www.linkedin.com/in/ayushman-paul" target="_blank"
+                class="flex items-center gap-3 text-sm text-gray-600 hover:text-accent transition-colors font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+                </svg>
+                LinkedIn Network
+              </a>
+              <a href="Resume_Zenith_Actual.pdf" target="_blank"
+                class="flex items-center gap-3 text-sm text-gray-600 hover:text-accent transition-colors font-medium mt-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download Résumé (PDF)
+              </a>
+            </div>
+          </div>
+
+
+          <form action="https://formspree.io/f/mvzdojoo" method="POST" class="flex flex-col gap-4">
+            <div>
+              <label for="name" class="block text-xs font-mono text-gray-500 mb-1">Name</label>
+              <input type="text" id="name" name="name" required
+                class="w-full bg-white border border-border rounded-lg px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors shadow-sm"
+                placeholder="John Doe">
+            </div>
+            <div>
+              <label for="email" class="block text-xs font-mono text-gray-500 mb-1">Email</label>
+              <input type="email" id="email" name="_replyto" required
+                class="w-full bg-white border border-border rounded-lg px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors shadow-sm"
+                placeholder="john@example.com">
+            </div>
+            <div>
+              <label for="message" class="block text-xs font-mono text-gray-500 mb-1">Message</label>
+              <textarea id="message" name="message" rows="4" required
+                class="w-full bg-white border border-border rounded-lg px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors shadow-sm resize-none"
+                placeholder="Hello Ayushman, I'd like to discuss..."></textarea>
+            </div>
+            <button type="submit"
+              class="bg-accent text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:bg-accent-dark transition-colors flex items-center justify-center gap-2 mt-1 sm:self-start">
+              <span>Send Message</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="border-t border-border mt-4 py-8">
+    <div
+      class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400 font-mono">
+      <span>© 2025 Ayushman Paul — IIT Kharagpur</span>
+      <span>Built with HTML · Tailwind CSS</span>
+    </div>
+  </footer>
+
+  <!-- ─── JAVASCRIPT ─────────────────────────────────────────────── -->
+  <script>
+    // ── Navbar scroll shadow ──────────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // ── Copy Email ────────────────────────────────────────────────
+    function copyEmail() {
+      const email = 'mr.infosagepoint2020@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        // Hero button
+        const label = document.getElementById('email-label');
+        const tooltip = document.getElementById('email-tooltip');
+        if (label) { label.textContent = 'Copied!'; setTimeout(() => label.textContent = email, 2000); }
+        if (tooltip) { tooltip.textContent = 'Copied!'; setTimeout(() => tooltip.textContent = 'Click to copy', 2000); }
+        // Contact section button
+        const btn = document.getElementById('copy-btn');
+        const btnText = document.getElementById('copy-text');
+        const btnIcon = document.getElementById('copy-icon');
+        if (btn && btnText) {
+          btnText.textContent = 'Copied!';
+          btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>';
+          btn.classList.add('bg-green-50', 'border-green-400', 'text-green-600');
+          btn.classList.remove('text-accent', 'border-accent/30');
+          setTimeout(() => {
+            btnText.textContent = 'Copy Email';
+            btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>';
+            btn.classList.remove('bg-green-50', 'border-green-400', 'text-green-600');
+            btn.classList.add('text-accent', 'border-accent/30');
+          }, 2000);
+        }
+      });
+    }
+
+    // ── Scroll Reveal ─────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Active nav link highlighting ──────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => navObserver.observe(s));
+
+
+  </script>
+</body>
+
+</html>
